@@ -190,6 +190,8 @@ body {
 .list-card-button {
   float: right;
   transform: scale(2);
+  font-size: 12pt;
+  margin-right: 10px;
 }
 
 #workspace-home,
