@@ -264,6 +264,26 @@ input {
   color: var(--swatch-neutral);
 }
 
+#playlister-statusbar {
+  position: absolute;
+  left: 0%;
+  top: 90%;
+  width: 100%;
+  height: 10%;
+  background-color: white;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36pt;
+}
+
+#playlist-selector, #playlist-cards {
+  display: flex;
+  overflow: scroll;
+  height: 80%;
+  flex-direction: column;
+  }
+
 /* THIS STYLE SHEET MANAGES STYLE FOR OUR MODAL, i.e. DIALOG BOX */
 
 .modal {
@@ -321,6 +341,32 @@ input {
 .modal-header,
 .modal-close {
   font-size: 1.5rem;
+}
+
+.modal-north {
+  font-size:28pt;
+  font-weight: bold;
+}
+
+.modal-center {
+  display: grid;
+  grid-template-columns: 30% 65%;
+  grid-template-rows: 33% 33% 33%;
+  gap: 10px 20px;
+  font-size: 20pt;
+}
+
+.modal-south {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.modal-button {
+  margin: 5px;
+  align-content: center;
 }
 
 .modal p + p {

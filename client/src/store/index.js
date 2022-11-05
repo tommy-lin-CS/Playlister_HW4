@@ -180,7 +180,7 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: payload.currentSongIndex
                 });
             }
             case GlobalStoreActionType.REMOVE_SONG: {
