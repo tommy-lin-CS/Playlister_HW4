@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/HighlightOff';
 */
 function EditToolbar() {
     const { store } = useContext(GlobalStoreContext);
+    let isModalOpen = store.currentSong !== null
 
     function handleAddNewSong() {
         store.addNewSong();
@@ -30,28 +31,28 @@ function EditToolbar() {
     return (
         <div id="edit-toolbar">
             <Button
-                disabled={!store.canAddNewSong()}
+                disabled={!store.canAddNewSong() || isModalOpen}
                 id='add-song-button'
                 onClick={handleAddNewSong}
                 variant="contained">
                 <AddIcon />
             </Button>
             <Button 
-                disabled={!store.canUndo()}
+                disabled={!store.canUndo() || isModalOpen}
                 id='undo-button'
                 onClick={handleUndo}
                 variant="contained">
                     <UndoIcon />
             </Button>
             <Button 
-                disabled={!store.canRedo()}
+                disabled={!store.canRedo() || isModalOpen}
                 id='redo-button'
                 onClick={handleRedo}
                 variant="contained">
                     <RedoIcon />
             </Button>
             <Button 
-                disabled={!store.canClose()}
+                disabled={!store.canClose() || isModalOpen}
                 id='close-button'
                 onClick={handleClose}
                 variant="contained">
