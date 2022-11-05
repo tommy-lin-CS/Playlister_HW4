@@ -356,6 +356,11 @@ input {
   font-size: 20pt;
 }
 
+.modal-center-content {
+  grid-column: 1 / 3;
+  grid-row: 1 / 4;
+}
+
 .modal-south {
   display:flex;
   flex-direction: row;
