@@ -30,7 +30,7 @@ export default function LoginScreen() {
     };
 
     return (
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container component="main" sx={{ }}>
             <CssBaseline />
             <Grid
                 item
@@ -49,7 +49,7 @@ export default function LoginScreen() {
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <Box
                     sx={{
-                        my: 8,
+                        my: 9,
                         mx: 4,
                         display: 'flex',
                         flexDirection: 'column',
@@ -102,7 +102,7 @@ export default function LoginScreen() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/register/" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
