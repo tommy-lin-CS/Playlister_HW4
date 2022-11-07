@@ -12,14 +12,16 @@ export const AuthActionType = {
     LOGOUT_USER: "LOGOUT_USER",
     REGISTER_USER: "REGISTER_USER",
     LOGIN_ERROR: "LOGIN_ERROR",
-    HIDE_LOGIN_ERROR: "HIDE_LOGIN_ERROR"
+    REGISTER_ERROR: "REGISTER_ERROR",
+    HIDE_ERROR_MODAL: "HIDE_ERROR_MODAL"
 }
 
 function AuthContextProvider(props) {
     const [auth, setAuth] = useState({
         user: null,
         loggedIn: false,
-        loginError: null
+        loginError: null,
+        registerError: null
     });
     const history = useHistory();
 
@@ -34,42 +36,56 @@ function AuthContextProvider(props) {
                 return setAuth({
                     user: payload.user,
                     loggedIn: payload.loggedIn,
-                    loginError: null
+                    loginError: null,
+                    registerError: null
                 });
             }
             case AuthActionType.LOGIN_USER: {
                 return setAuth({
                     user: payload.user,
                     loggedIn: true,
-                    loginError: null
+                    loginError: null,
+                    registerError: null
                 })
             }
             case AuthActionType.LOGOUT_USER: {
                 return setAuth({
                     user: null,
                     loggedIn: false,
-                    loginError: null
+                    loginError: null,
+                    registerError: null
                 })
             }
             case AuthActionType.REGISTER_USER: {
                 return setAuth({
                     user: payload.user,
                     loggedIn: true,
-                    loginError: null
+                    loginError: null,
+                    registerError: null
                 })
             }
             case AuthActionType.LOGIN_ERROR: {
                 return setAuth({
                     user: null,
                     loggedIn: auth.loggedIn,
-                    loginError: payload.errorMessage
+                    loginError: payload.errorMessage,
+                    registerError: null
                 })
             }
-            case AuthActionType.HIDE_LOGIN_ERROR: {
+            case AuthActionType.REGISTER_ERROR: {
+                return setAuth({
+                    user: null,
+                    loggedIn: auth.loggedIn,
+                    loginError: null,
+                    registerError: payload.errorMessage
+                })
+            }
+            case AuthActionType.HIDE_ERROR_MODAL: {
                 return setAuth({
                     user: null, 
                     loggedIn: auth.loggedIn,
-                    loginError: null
+                    loginError: null,
+                    registerError: null
                 })
             }
             default:
@@ -91,7 +107,10 @@ function AuthContextProvider(props) {
     }
 
     auth.registerUser = async function(firstName, lastName, email, password, passwordVerify) {
-        const response = await api.registerUser(firstName, lastName, email, password, passwordVerify);      
+        const response = await api.registerUser(firstName, lastName, email, password, passwordVerify)
+        .catch((err) => {
+            return err.response;
+        });
         if (response.status === 200) {
             authReducer({
                 type: AuthActionType.REGISTER_USER,
@@ -100,6 +119,10 @@ function AuthContextProvider(props) {
                 }
             })
             history.push("/");
+        }
+        else {
+            console.log(response.data.errorMessage)
+            auth.showRegisterErrorModal(response.data.errorMessage);
         }
     }
 
@@ -147,13 +170,21 @@ function AuthContextProvider(props) {
     auth.showLoginErrorModal = function(errorMessage) {
         authReducer( {
             type: AuthActionType.LOGIN_ERROR,
-            payload: { errorMessage: errorMessage}
+            payload: { errorMessage: errorMessage }
         })
     }
 
-    auth.hideLoginErrorModal = function() {
+    auth.showRegisterErrorModal = function(errorMessage) {
+        console.log(errorMessage)
         authReducer( {
-            type: AuthActionType.HIDE_LOGIN_ERROR,
+            type: AuthActionType.REGISTER_ERROR,
+            payload: { errorMessage: errorMessage }
+        })
+    }
+
+    auth.hideErrorModals = function() {
+        authReducer( {
+            type: AuthActionType.HIDE_ERROR_MODAL,
             payload: null
         })
     }

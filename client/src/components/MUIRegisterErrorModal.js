@@ -23,23 +23,24 @@ const buttonStyle = {
     transform: 'translateX(180%)',
 };
 
-export default function MUILoginErrorModal() {
+export default function MUIRegisterErrorModal() {
+    console.log("DUDE BEING RAN")
     const { auth } = useContext(AuthContext);
 
-    let errorMessage = auth.loginError;
+    let errorMessage = auth.registerError;
     
     function handleClose(event) {
         event.stopPropagation();
         auth.hideErrorModals();
     }
 
-    return <Modal 
-        open={auth.loginError !== null}
+    return <Modal
+        open={auth.registerError !== null}
     >
         <Box sx={style}>
             <Alert severity="error">
                 <AlertTitle>
-                    Login Error!
+                    Register Error!
                 </AlertTitle>
                     {errorMessage}
             </Alert>
