@@ -278,11 +278,12 @@ input {
 }
 
 #playlist-selector, #playlist-cards {
-  display: flex;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
   overflow: scroll;
-  height: 80%;
+  display: flex;
   flex-direction: column;
-  }
+}
 
 /* THIS STYLE SHEET MANAGES STYLE FOR OUR MODAL, i.e. DIALOG BOX */
 
