@@ -25,9 +25,9 @@ function WorkspaceScreen() {
     }
     return (
         <Box>
-        <List 
+        <List disablePadding
             id="playlist-cards" 
-            sx={{ width: '100%', maxHeight: '560px', bgcolor: 'background.paper' }}
+            sx={{ width: '100%', maxHeight: '580px', bgcolor: 'background.paper' }}
         >
             {
                 store.currentList.songs.map((song, index) => (

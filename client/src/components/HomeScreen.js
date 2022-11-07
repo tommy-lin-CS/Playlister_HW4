@@ -25,7 +25,7 @@ const HomeScreen = () => {
     let listCard = "";
     if (store) {
         listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            <List disablePadding sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
             {
                 store.idNamePairs.map((pair) => (
                     <ListCard
@@ -42,6 +42,7 @@ const HomeScreen = () => {
             <div id="list-selector-heading">
             <Fab 
                 color="primary" 
+                size="medium"
                 aria-label="add"
                 id="add-list-button"
                 onClick={handleCreateNewList}
