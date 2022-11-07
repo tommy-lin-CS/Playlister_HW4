@@ -37,7 +37,7 @@ createPlaylist = (req, res) => {
                             playlist: playlist
                         })
                     })
-                    .catch(error => {
+                    .catch(err => {
                         return res.status(400).json({
                             errorMessage: 'Playlist Not Created!'
                         })
