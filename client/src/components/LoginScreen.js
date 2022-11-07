@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import AuthContext from '../auth'
 
-import Copyright from './Copyright'
+import Copyright from './Copyright';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import MUILoginErrorModal from './MUILoginErrorModal';
 
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
@@ -22,6 +23,7 @@ export default function LoginScreen() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
+        
         auth.loginUser(
             formData.get('email'),
             formData.get('password')
@@ -111,6 +113,7 @@ export default function LoginScreen() {
                     </Box>
                 </Box>
             </Grid>
+            <MUILoginErrorModal />
         </Grid>
     );
 }
