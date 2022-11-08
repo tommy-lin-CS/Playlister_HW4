@@ -25,6 +25,15 @@ createPlaylist = (req, res) => {
     }
 
     User.findOne({ _id: req.userId }, (err, user) => {
+        // Check if the user.email !== playlist.ownerEmail => throw error
+        loggedInUserEmail = user.email; // User that's already logged in
+        requestedUserEmail = playlist.ownerEmail; // User Postman is trying to access
+        if(loggedInUserEmail !== requestedUserEmail) {
+            return res.status(400).json({
+                errorMessage: "You are creating a playlist on another user's playlist."
+            })
+        }
+
         console.log("user found: " + JSON.stringify(user));
         user.playlists.push(playlist._id);
         user
